@@ -34,3 +34,9 @@ resource "yandex_compute_instance" "build" {
     subnet_id = "${yandex_vpc_subnet.foo.id}"
   }
 }
+resource "yandex_vpc_network" "foo" {}
+
+resource "yandex_vpc_subnet" "foo" {
+  zone       = "ru-central1-a"
+  network_id = "${yandex_vpc_network.foo.id}"
+}
