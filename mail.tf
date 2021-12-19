@@ -38,7 +38,7 @@ resource "yandex_vpc_subnet" "subnet-1" {
   name       = "subnet1"
   zone       = "ru-central1-b"
   network_id = "enpelpnqn9o40oe89gnl"
-  v4_cidr_blocks = ["10.129.0.12/24"]
+  v4_cidr_blocks = ["10.129.0.12"]
 }
 output "internal_ip_address_build" {
   value = yandex_compute_instance.build.network_interface.0.ip_address
