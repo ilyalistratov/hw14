@@ -33,15 +33,15 @@ resource "yandex_compute_instance" "build" {
         nat       = true
   }
 }
-resource "yandex_vpc_network" "network-1" {
-name = "network1"
+resource "yandex_vpc_network" "default" {
+name = "default"
 }
 
 resource "yandex_vpc_subnet" "subnet-1" {
   name       = "subnet1"
   zone       = "ru-central1-b"
-  network_id = "yandex_vpc_network.network-1.id"
-  v4_cidr_blocks = ["0.0.0.0/0"]
+  network_id = "yandex_vpc_network.default.id"
+  v4_cidr_blocks = ["192.168.10.0/16"]
 }
 output "internal_ip_address_build" {
   value = yandex_compute_instance.build.network_interface.0.ip_address
