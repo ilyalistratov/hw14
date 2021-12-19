@@ -16,8 +16,6 @@ provider "yandex" {
 
 resource "yandex_compute_instance" "build" {
   name = "build1"
-  platform_id = "standard-v1"
-  zone = "ru-central1-b"
 
     resources {
     cores  = 2
@@ -26,18 +24,28 @@ resource "yandex_compute_instance" "build" {
 
   boot_disk {
     initialize_params {
-      image_id = "image_id"
+      image_id = "epd2a7hmo6pck70ldh3b"
     }
   }
 
   network_interface {
-    subnet_id = "${yandex_vpc_subnet.foo.id}"
+        subnet_id = yandex_vpc_subnet.subnet-1.id
+        nat       = true
   }
 }
-resource "yandex_vpc_network" "foo" {}
+resource "yandex_vpc_network" "foo" {
+name = "foo1"
+}
 
-resource "yandex_vpc_subnet" "foo" {
+resource "yandex_vpc_subnet" "sub" {
+  name       = "subnet1"
   zone       = "ru-central1-b"
-  network_id = "${yandex_vpc_network.foo.id}"
-  v4_cidr_blocks = ["192.168.10.0/24"]
+  network_id = "yandex_vpc_network.foo.id"
+  v4_cidr_blocks = ["0.0.0.0/0"]
+}
+output "internal_ip_address_build" {
+  value = yandex_compute_instance.build.network_interface.0.ip_address
+}
+output "external_ip_address_vm_1" {
+  value = yandex_compute_instance.build.network_interface.0.nat_ip_address
 }
