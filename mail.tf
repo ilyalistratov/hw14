@@ -33,9 +33,6 @@ resource "yandex_compute_instance" "build" {
         nat       = true
   }
 }
-resource "yandex_vpc_network" "default" {
-name = "default"
-}
 
 resource "yandex_vpc_subnet" "subnet-1" {
   name       = "subnet1"
