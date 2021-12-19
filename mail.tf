@@ -18,7 +18,7 @@ resource "yandex_compute_instance" "build" {
   name = "build1"
   platform_id = "standard-v1"
   zone = "ru-central1-b"
-  }
+
     resources {
     cores  = 2
     memory = 4
@@ -33,4 +33,4 @@ resource "yandex_compute_instance" "build" {
   network_interface {
     subnet_id = "${yandex_vpc_subnet.foo.id}"
   }
-
+}
