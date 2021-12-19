@@ -19,4 +19,18 @@ resource "yandex_compute_instance" "build" {
   platform_id = "standard-v1"
   zone = "ru-central1-b"
   }
+    resources {
+    cores  = 2
+    memory = 4
+  }
+
+  boot_disk {
+    initialize_params {
+      image_id = "image_id"
+    }
+  }
+
+  network_interface {
+    subnet_id = "${yandex_vpc_subnet.foo.id}"
+  }
 
