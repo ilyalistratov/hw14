@@ -39,4 +39,5 @@ resource "yandex_vpc_network" "foo" {}
 resource "yandex_vpc_subnet" "foo" {
   zone       = "ru-central1-b"
   network_id = "${yandex_vpc_network.foo.id}"
+  v4_cidr_blocks = ["192.168.10.0/24"]
 }
