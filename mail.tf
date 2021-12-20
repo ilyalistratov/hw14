@@ -25,6 +25,7 @@ resource "yandex_compute_instance" "build" {
   boot_disk {
     initialize_params {
       image_id = "fd8vgqmrilk8dchj1ccf"
+      size = "10"
     }
   }
 
@@ -32,13 +33,17 @@ resource "yandex_compute_instance" "build" {
         subnet_id = yandex_vpc_subnet.subnet-1.id
         nat       = true
   }
+  metadata = {
+  foo      = "bar"
+  ssh-keys = "ubuntu:${file("~/.ssh/id.pub")}"
+  }
 }
 
 resource "yandex_vpc_subnet" "subnet-1" {
   name       = "subnet1"
   zone       = "ru-central1-b"
   network_id = "enpelpnqn9o40oe89gnl"
-  v4_cidr_blocks = ["192.168.10.0/24"]
+  v4_cidr_blocks = ["192.168.11.0/24"]
 }
 output "internal_ip_address_build" {
   value = yandex_compute_instance.build.network_interface.0.ip_address
