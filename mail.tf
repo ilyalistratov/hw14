@@ -15,7 +15,7 @@ provider "yandex" {
 }
 
 resource "yandex_compute_instance" "bui" {
-  name = "build2"
+  name = "bui"
 
     resources {
     cores  = 2
