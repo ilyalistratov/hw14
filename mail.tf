@@ -8,7 +8,7 @@ terraform {
 }
 
 provider "yandex" {
-  token     = "AQAAAABKlbEIAATuwWvtTyeyv0mOklLnlQVvaac"
+  token     = ""
   cloud_id  = "b1gm7ni2v808puh04hm5"
   folder_id = "b1gr2ctfcm32jom2pged"
   zone      = "ru-central1-b"
@@ -39,7 +39,7 @@ resource "yandex_compute_instance" "bui" {
     startup-script = <<-EOF
   apt update -y
   apt install nginx -y
-  echo "<html><body>TEST</body></html>" > /var/www/html/index.html
+  echo "<html><body>hello world</body></html>" > /var/www/html/index.html
   EOF
   }
 }
