@@ -36,6 +36,11 @@ resource "yandex_compute_instance" "bui" {
   metadata = {
   ssh-keys = "~/.ssh/ilya.pub"
     user-data = "~/.ssh/meta.txt"
+    startup-script = <<-EOF
+  apt update -y
+  apt install nginx -y
+  echo "<html><body>TEST</body></html>" > /var/www/html/index.html
+  EOF
   }
 }
 
