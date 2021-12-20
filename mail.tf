@@ -34,7 +34,7 @@ resource "yandex_compute_instance" "bui" {
         nat       = true
   }
   metadata = {
-  ssh-keys = "ubuntu:${file("root/.ssh/ilya.pub")}"
+  ssh-keys = "ubuntu:${file("~/.ssh/ilya.pub")}"
   }
 }
 
