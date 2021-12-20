@@ -30,7 +30,7 @@ resource "yandex_compute_instance" "bui" {
   }
 
   network_interface {
-        subnet_id = yandex_vpc_subnet.subnet-1.id
+        subnet_id = yandex_vpc_subnet.subnet-2.id
         nat       = true
   }
   metadata = {
@@ -39,11 +39,11 @@ resource "yandex_compute_instance" "bui" {
   }
 }
 
-resource "yandex_vpc_subnet" "subnet-1" {
-  name       = "subnet1"
+resource "yandex_vpc_subnet" "subnet-2" {
+  name       = "subnet2"
   zone       = "ru-central1-b"
   network_id = "enpelpnqn9o40oe89gnl"
-  v4_cidr_blocks = ["192.168.14.0/24"]
+  v4_cidr_blocks = ["192.168.16.0/24"]
 }
 output "internal_ip_address_bui" {
   value = yandex_compute_instance.bui.network_interface.0.ip_address
